@@ -13,7 +13,7 @@
     "build:docs": "parcel build example/index.html -d docs"
   },
   "author": "olizilla <oli@tableflip.io>",
-  "license": "ISC",
+  "license": "MIT",
   "peerDependencies": {
     "react": "^15.0.0-0 || ^16.0.0",
     "react-dom": "^15.0.0-0 || ^16.0.0"
