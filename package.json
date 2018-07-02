@@ -10,7 +10,7 @@
     "prepublish": "npm run build",
     "build": "run-s clean build:*",
     "build:js": "babel src/index.js -o lib/index.js",
-    "build:docs": "parcel build example/index.html -d docs"
+    "build:docs": "parcel build example/index.html -d docs --public-url ./"
   },
   "author": "olizilla <oli@tableflip.io>",
   "license": "MIT",
