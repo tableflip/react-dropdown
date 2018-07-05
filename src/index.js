@@ -142,7 +142,7 @@ export const DropdownMenu = ({open, className, background, width, left, top = 0,
       <Overlay onClick={onDismiss} />
       <MenuPosition width={width} left={left}>
         {arrowPosition === 'top' && <MenuArrowUp background={background} height={arrowHeight} align={arrowAlign} marginLeft={arrowMarginLeft} marginRight={arrowMarginRight} />}
-        <Menu background={background}>
+        <Menu className={className} background={background}>
           {open ? children : null}
         </Menu>
         {arrowPosition === 'bottom' && <MenuArrowDown background={background} height={arrowHeight} align={arrowAlign} marginLeft={arrowMarginLeft} marginRight={arrowMarginRight} />}
