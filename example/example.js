@@ -1,13 +1,13 @@
 import React from 'react'
 import {Dropdown, DropdownMenu} from '../src'
 
-function AddFileDropdown ({label, background, open, onActivate, onDismiss, alignRight}) {
+function AddFileDropdown ({label, background, boxShadow, open, onActivate, onDismiss, alignRight}) {
   return (
     <Dropdown className='mh3'>
       <button onClick={onActivate} className='br2 bg-blue white pa3 avenir fw5' style={{width: 200}}>
         {label}
       </button>
-      <DropdownMenu open={open} onDismiss={onDismiss} width={200} alignRight={alignRight} background={background}>
+      <DropdownMenu open={open} onDismiss={onDismiss} width={200} alignRight={alignRight} background={background} boxShadow={boxShadow}>
         <nav className='pv1'>
           <Option href='#'>Add File</Option>
           <Option href='#'>Add Folder</Option>
@@ -39,7 +39,8 @@ class ExamplePage extends React.Component {
       <div className='flex items-center justify-center'>
         <AddFileDropdown label='alignRight' open={open} onActivate={this.toggleDropdown} onDismiss={this.toggleDropdown} alignRight />
         <AddFileDropdown label='default' open={open} onActivate={this.toggleDropdown} onDismiss={this.toggleDropdown} />
-        <AddFileDropdown label='aqua menu' background='#69c4cd' open={open} onActivate={this.toggleDropdown} onDismiss={this.toggleDropdown} />
+        <AddFileDropdown label='aqua background' background='#69c4cd' open={open} onActivate={this.toggleDropdown} onDismiss={this.toggleDropdown} />
+        <AddFileDropdown label='pink shadow' boxShadow='0px 1px 10px 0px pink' open={open} onActivate={this.toggleDropdown} onDismiss={this.toggleDropdown} />
       </div>
     )
   }
