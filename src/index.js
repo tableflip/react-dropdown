@@ -43,7 +43,7 @@ const Container = ({open, top = 0, children}) => (
 )
 
 // An arrow tip that appears at the top middle of the dropdown menu
-const MenuArrowUp = ({height, background = 'white', align = 'center', marginLeft = 'auto', marginRight = 'auto'}) => {
+const MenuArrowUp = ({height, boxShadow = '0px 1px 10px 0px rgba(0,0,0,0.20)', background = 'white', align = 'center', marginLeft = 'auto', marginRight = 'auto'}) => {
   const side = Math.round(Math.sqrt(2) * height)
 
   return (
@@ -66,14 +66,14 @@ const MenuArrowUp = ({height, background = 'white', align = 'center', marginLeft
         background: background,
         left: marginLeft,
         right: marginRight,
-        boxShadow: '0px 1px 10px 0px rgba(0,0,0,0.20)'
+        boxShadow: boxShadow
       }} />
     </div>
   )
 }
 
 // An arrow tip that appears at the bottom middle of the dropdown menu
-const MenuArrowDown = ({height, background = 'white', align = 'center', marginLeft = 'auto', marginRight = 'auto'}) => {
+const MenuArrowDown = ({height, boxShadow = '0px 1px 10px 0px rgba(0,0,0,0.20)', background = 'white', align = 'center', marginLeft = 'auto', marginRight = 'auto'}) => {
   const side = Math.round(Math.sqrt(2) * height)
 
   return (
@@ -92,7 +92,7 @@ const MenuArrowDown = ({height, background = 'white', align = 'center', marginLe
         transform: `translate(0, ${height / 2}px) rotate(45deg)`,
         borderRadius: '2px 0 0 0',
         background: background,
-        boxShadow: '0px 1px 10px 0px rgba(0,0,0,0.20)',
+        boxShadow: boxShadow,
         top: `-${height + 2}px`,
         left: marginLeft,
         right: marginRight,
@@ -119,19 +119,19 @@ const MenuPosition = ({width, left = `calc(50% - ${width / 2}px)`, children}) =>
 )
 
 // Styling for the dropdown box and shadow, and reset positon to relative.
-const Menu = ({background = 'white', className, children}) => (
+const Menu = ({boxShadow = '0px 1px 10px 0px rgba(0,0,0,0.20)', background = 'white', className, children}) => (
   <div style={{
     position: 'relative',
     textAlign: 'left',
     zIndex: 500,
     background: background,
-    boxShadow: '0px 1px 10px 0px rgba(0,0,0,0.20)'
+    boxShadow: boxShadow
   }} className={className}>
     {children}
   </div>
 )
 
-export const DropdownMenu = ({open, className, background, width, left, top = 0, arrowHeight = 12, arrowPosition = 'top', arrowAlign, arrowMarginLeft, arrowMarginRight, onDismiss, alignRight, children}) => {
+export const DropdownMenu = ({open, boxShadow, className, background, width, left, top = 0, arrowHeight = 12, arrowPosition = 'top', arrowAlign, arrowMarginLeft, arrowMarginRight, onDismiss, alignRight, children}) => {
   if (alignRight) {
     left = `calc(100% - ${width}px)`
     arrowAlign = 'right'
@@ -141,11 +141,11 @@ export const DropdownMenu = ({open, className, background, width, left, top = 0,
     <Container open={open} top={top + arrowHeight}>
       <Overlay onClick={onDismiss} />
       <MenuPosition width={width} left={left}>
-        {arrowPosition === 'top' && <MenuArrowUp background={background} height={arrowHeight} align={arrowAlign} marginLeft={arrowMarginLeft} marginRight={arrowMarginRight} />}
-        <Menu className={className} background={background}>
+        {arrowPosition === 'top' && <MenuArrowUp boxShadow={boxShadow} background={background} height={arrowHeight} align={arrowAlign} marginLeft={arrowMarginLeft} marginRight={arrowMarginRight} />}
+        <Menu className={className} boxShadow={boxShadow} background={background}>
           {open ? children : null}
         </Menu>
-        {arrowPosition === 'bottom' && <MenuArrowDown background={background} height={arrowHeight} align={arrowAlign} marginLeft={arrowMarginLeft} marginRight={arrowMarginRight} />}
+        {arrowPosition === 'bottom' && <MenuArrowDown boxShadow={boxShadow} background={background} height={arrowHeight} align={arrowAlign} marginLeft={arrowMarginLeft} marginRight={arrowMarginRight} />}
       </MenuPosition>
     </Container>
   )
