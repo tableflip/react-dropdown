@@ -32,5 +32,18 @@
   },
   "dependencies": {
     "tachyons": "^4.10.0"
-  }
+  },
+  "directories": {
+    "doc": "docs",
+    "example": "example",
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tableflip/react-dropdown.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tableflip/react-dropdown/issues"
+  },
+  "homepage": "https://github.com/tableflip/react-dropdown#readme"
 }
