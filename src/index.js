@@ -135,7 +135,7 @@ export const DropdownMenu = ({open, boxShadow, className, background, width, lef
   if (alignRight) {
     left = `calc(100% - ${width}px)`
     arrowAlign = 'right'
-    arrowMarginRight = '13px'
+    arrowMarginRight = arrowMarginRight || '13px'
   }
   return (
     <Container open={open} top={top + arrowHeight}>
