@@ -108,11 +108,13 @@ const MenuArrowDown = ({height, boxShadow = '0px 1px 10px 0px rgba(0,0,0,0.20)',
 //        centered by default.
 //        `left={0}` would make the left of the menu inline with the left of the
 //         trigger element.
-const MenuPosition = ({width, left = `calc(50% - ${width / 2}px)`, children}) => (
+const MenuPosition = ({ width, left = `calc(50% - ${width / 2}px)`, translateX, translateY, children }) => (
   <div style={{
     position: 'absolute',
     width: `${width}px`,
-    left
+    left,
+    transform: `translateX(${translateX}px) translateY(${translateY}px)`,
+    zIndex: 1
   }}>
     {children}
   </div>
@@ -131,7 +133,7 @@ const Menu = ({boxShadow = '0px 1px 10px 0px rgba(0,0,0,0.20)', background = 'wh
   </div>
 )
 
-export const DropdownMenu = ({open, boxShadow, className, background, width, left, top = 0, arrowHeight = 12, arrowPosition = 'top', arrowAlign, arrowMarginLeft, arrowMarginRight, onDismiss, alignRight, children}) => {
+export const DropdownMenu = ({ open, boxShadow, className, background, translateX = 0, translateY = 0, width, left, top = 0, arrowHeight = 12, arrowPosition = 'top', arrowAlign, arrowMarginLeft, arrowMarginRight, onDismiss, alignRight, children }) => {
   if (alignRight) {
     left = `calc(100% - ${width}px)`
     arrowAlign = 'right'
@@ -140,7 +142,7 @@ export const DropdownMenu = ({open, boxShadow, className, background, width, lef
   return (
     <Container open={open} top={top + arrowHeight}>
       <Overlay onClick={onDismiss} />
-      <MenuPosition width={width} left={left}>
+      <MenuPosition width={width} left={left} translateX={translateX} translateY={translateY}>
         {arrowPosition === 'top' && <MenuArrowUp boxShadow={boxShadow} background={background} height={arrowHeight} align={arrowAlign} marginLeft={arrowMarginLeft} marginRight={arrowMarginRight} />}
         <Menu className={className} boxShadow={boxShadow} background={background}>
           {open ? children : null}
