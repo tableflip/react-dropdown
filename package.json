@@ -9,7 +9,7 @@
     "start": "parcel example/index.html -d docs",
     "prepublish": "npm run build",
     "build": "run-s clean build:*",
-    "build:js": "babel src/index.js -o lib/index.js",
+    "build:js": "babel src/index.js -d lib",
     "build:docs": "parcel build example/index.html -d docs --public-url ./"
   },
   "author": "olizilla <oli@tableflip.io>",
