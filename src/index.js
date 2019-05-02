@@ -23,6 +23,7 @@ const Overlay = ({onClick}) => {
   return (
     <div onClick={onClick} style={{
       position: 'fixed',
+      zIndex: 999,
       top: 0,
       right: 0,
       bottom: 0,
@@ -114,7 +115,7 @@ const MenuPosition = ({ width, left = `calc(50% - ${width / 2}px)`, translateX, 
     width: `${width}px`,
     left,
     transform: `translateX(${translateX}px) translateY(${translateY}px)`,
-    zIndex: 1
+    zIndex: 9999
   }}>
     {children}
   </div>
