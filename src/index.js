@@ -12,14 +12,14 @@ import React from 'react'
  *     </DropdownMenu>
  *   </Dropdown>
  */
-export const Dropdown = ({children, className}) => (
+export const Dropdown = ({ children, className }) => (
   <div className={`inline-block align-top ${className}`}>
     {children}
   </div>
 )
 
 // Invisible click grabber, to detect when the user clicks away.
-const Overlay = ({onClick, zIndex}) => {
+const Overlay = ({ onClick, zIndex }) => {
   return (
     <div onClick={onClick} style={{
       position: 'fixed',
@@ -27,13 +27,13 @@ const Overlay = ({onClick, zIndex}) => {
       top: 0,
       right: 0,
       bottom: 0,
-      left: 0}} data-id='dropdown-overlay' />
+      left: 0 }} data-id='dropdown-overlay' />
   )
 }
 
 // `open` is used to show and hide the menu
 // `top` is used to move the menu and arrow down.
-const Container = ({open, top = 0, children}) => (
+const Container = ({ open, top = 0, children }) => (
   <div style={{
     display: open ? null : 'none',
     position: 'relative',
@@ -44,7 +44,7 @@ const Container = ({open, top = 0, children}) => (
 )
 
 // An arrow tip that appears at the top middle of the dropdown menu
-const MenuArrowUp = ({height, boxShadow = '0px 1px 10px 0px rgba(0,0,0,0.20)', background = 'white', align = 'center', marginLeft = 'auto', marginRight = 'auto'}) => {
+const MenuArrowUp = ({ height, boxShadow = '0px 1px 10px 0px rgba(0,0,0,0.20)', background = 'white', align = 'center', marginLeft = 'auto', marginRight = 'auto' }) => {
   const side = Math.round(Math.sqrt(2) * height)
 
   return (
@@ -74,7 +74,7 @@ const MenuArrowUp = ({height, boxShadow = '0px 1px 10px 0px rgba(0,0,0,0.20)', b
 }
 
 // An arrow tip that appears at the bottom middle of the dropdown menu
-const MenuArrowDown = ({height, boxShadow = '0px 1px 10px 0px rgba(0,0,0,0.20)', background = 'white', align = 'center', marginLeft = 'auto', marginRight = 'auto'}) => {
+const MenuArrowDown = ({ height, boxShadow = '0px 1px 10px 0px rgba(0,0,0,0.20)', background = 'white', align = 'center', marginLeft = 'auto', marginRight = 'auto' }) => {
   const side = Math.round(Math.sqrt(2) * height)
 
   return (
@@ -121,7 +121,7 @@ const MenuPosition = ({ width, left = `calc(50% - ${width / 2}px)`, translateX, 
 )
 
 // Styling for the dropdown box and shadow, and reset positon to relative.
-const Menu = ({boxShadow = '0px 1px 10px 0px rgba(0,0,0,0.20)', background = 'white', className, children}) => (
+const Menu = ({ boxShadow = '0px 1px 10px 0px rgba(0,0,0,0.20)', background = 'white', className, children }) => (
   <div style={{
     position: 'relative',
     textAlign: 'left',
