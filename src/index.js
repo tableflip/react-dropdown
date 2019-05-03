@@ -19,10 +19,11 @@ export const Dropdown = ({children, className}) => (
 )
 
 // Invisible click grabber, to detect when the user clicks away.
-const Overlay = ({onClick}) => {
+const Overlay = ({onClick, zIndex}) => {
   return (
     <div onClick={onClick} style={{
       position: 'fixed',
+      zIndex,
       top: 0,
       right: 0,
       bottom: 0,
@@ -48,13 +49,13 @@ const MenuArrowUp = ({height, boxShadow = '0px 1px 10px 0px rgba(0,0,0,0.20)', b
 
   return (
     <div style={{
-      zIndex: 600,
       position: 'absolute',
       width: '100%',
       height: `${height}px`,
       top: `-${height}px`,
       textAlign: align,
-      overflow: 'hidden'
+      overflow: 'hidden',
+      zIndex: 1
     }}>
       <div style={{
         display: 'inline-block',
@@ -78,11 +79,11 @@ const MenuArrowDown = ({height, boxShadow = '0px 1px 10px 0px rgba(0,0,0,0.20)',
 
   return (
     <div style={{
-      zIndex: 600,
       width: '100%',
       height: `${height + 5}px`,
       textAlign: align,
-      overflow: 'hidden'
+      overflow: 'hidden',
+      zIndex: 1
     }}>
       <div style={{
         display: 'inline-block',
@@ -95,8 +96,7 @@ const MenuArrowDown = ({height, boxShadow = '0px 1px 10px 0px rgba(0,0,0,0.20)',
         boxShadow: boxShadow,
         top: `-${height + 2}px`,
         left: marginLeft,
-        right: marginRight,
-        zIndex: 601
+        right: marginRight
       }} />
     </div>
   )
@@ -108,13 +108,13 @@ const MenuArrowDown = ({height, boxShadow = '0px 1px 10px 0px rgba(0,0,0,0.20)',
 //        centered by default.
 //        `left={0}` would make the left of the menu inline with the left of the
 //         trigger element.
-const MenuPosition = ({ width, left = `calc(50% - ${width / 2}px)`, translateX, translateY, children }) => (
+const MenuPosition = ({ width, left = `calc(50% - ${width / 2}px)`, translateX, translateY, children, zIndex }) => (
   <div style={{
     position: 'absolute',
     width: `${width}px`,
     left,
     transform: `translateX(${translateX}px) translateY(${translateY}px)`,
-    zIndex: 1
+    zIndex
   }}>
     {children}
   </div>
@@ -125,7 +125,6 @@ const Menu = ({boxShadow = '0px 1px 10px 0px rgba(0,0,0,0.20)', background = 'wh
   <div style={{
     position: 'relative',
     textAlign: 'left',
-    zIndex: 500,
     background: background,
     boxShadow: boxShadow
   }} className={className}>
@@ -133,7 +132,7 @@ const Menu = ({boxShadow = '0px 1px 10px 0px rgba(0,0,0,0.20)', background = 'wh
   </div>
 )
 
-export const DropdownMenu = ({ open, boxShadow, className, background, translateX = 0, translateY = 0, width, left, top = 0, arrowHeight = 12, arrowPosition = 'top', arrowAlign, arrowMarginLeft, arrowMarginRight, onDismiss, alignRight, children }) => {
+export const DropdownMenu = ({ open, boxShadow, className, background, translateX = 0, translateY = 0, width, left, top = 0, arrowHeight = 12, arrowPosition = 'top', arrowAlign, arrowMarginLeft, arrowMarginRight, onDismiss, alignRight, children, baseZIndex = 100 }) => {
   if (alignRight) {
     left = `calc(100% - ${width}px)`
     arrowAlign = 'right'
@@ -141,8 +140,8 @@ export const DropdownMenu = ({ open, boxShadow, className, background, translate
   }
   return (
     <Container open={open} top={top + arrowHeight}>
-      <Overlay onClick={onDismiss} />
-      <MenuPosition width={width} left={left} translateX={translateX} translateY={translateY}>
+      <Overlay onClick={onDismiss} zIndex={baseZIndex} />
+      <MenuPosition zIndex={baseZIndex + 1} width={width} left={left} translateX={translateX} translateY={translateY}>
         {arrowPosition === 'top' && <MenuArrowUp boxShadow={boxShadow} background={background} height={arrowHeight} align={arrowAlign} marginLeft={arrowMarginLeft} marginRight={arrowMarginRight} />}
         <Menu className={className} boxShadow={boxShadow} background={background}>
           {open ? children : null}
