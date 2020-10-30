@@ -20,8 +20,13 @@ export const Dropdown = ({ children, className }) => (
 
 // Invisible click grabber, to detect when the user clicks away.
 const Overlay = ({ onClick, zIndex }) => {
+  const onContextMenuHandle = ev => {
+    ev.preventDefault();
+    return onClick(ev)
+  }
+
   return (
-    <div onClick={onClick} style={{
+    <div onClick={onClick} onContextMenu={onContextMenuHandle} style={{
       position: 'fixed',
       zIndex,
       top: 0,
